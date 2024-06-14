@@ -39,7 +39,7 @@ export const Trail = ({ navigation, route }) => {
     <ScrollView style={styles.scrollArea}>
       <Image source={imageSource} style={[styles.image, { width: width }]} />
       <View style={styles.textContainer}>
-        <Text style={styles.header}>{name.toUpperCase()}</Text>
+        <Text style={styles.header}>{name}</Text>
         <Text style={styles.text}>
           <Ionicons name="trail-sign-outline" style={styles.description_icon} />
           {endpoints[0]} - {endpoints[1]}
@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
   header: {
     padding: 16,
     fontFamily: "Lexend_500",
-    fontSize: 28,
+    fontSize: 32,
     color: "#42404D",
-    letterSpacing: "-3",
+    letterSpacing: "-2",
   },
   image: {
     height: 540,

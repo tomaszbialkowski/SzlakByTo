@@ -1,25 +1,37 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { IconAsButton } from "./IconAsButton";
 
-export const Header = () => {
+import { User } from "../data/user";
+
+export const Greeting = ({
+  greetingText = "",
+  size = 48,
+  isButton = false,
+}) => {
+  const { name, lastname, mail, image } = User;
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <Image
           source={{
-            uri: "https://i.pravatar.cc/48",
+            uri: image,
           }}
-          style={styles.userAvatar}
+          style={[styles.userAvatar, { width: size, height: size }]}
         />
         <View>
-          <Text style={styles.text}>Cześć User</Text>
-          <Text style={styles.bolder}>Jaki szlak dziś Cię trafi?</Text>
+          <Text style={styles.text}>
+            {greetingText ? `Cześć ${name}` : `${name} ${lastname}`}
+          </Text>
+          <Text style={styles.bolder}>
+            {greetingText ? greetingText : mail}
+          </Text>
         </View>
       </View>
-
-      <View>
-        <IconAsButton iconName={"notifications-outline"} />
-      </View>
+      {isButton ? (
+        <View>
+          <IconAsButton iconName={"notifications-outline"} />
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -29,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 16,
+    paddingVertical: 16,
   },
   wrapper: {
     flexDirection: "row",
@@ -37,8 +49,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   userAvatar: {
-    width: 48,
-    height: 48,
+    // width: 48,
+    // height: 48,
     borderRadius: 50,
   },
   text: {

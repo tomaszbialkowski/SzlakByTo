@@ -4,7 +4,7 @@ import { TrailTail } from "./TrailTail.js";
 
 export const ListHorizontal = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.header}>Popularne szlaki</Text>
       <FlatList
         data={trails}
@@ -18,9 +18,6 @@ export const ListHorizontal = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-  },
   contentContainer: {
     marginBottom: 16,
   },

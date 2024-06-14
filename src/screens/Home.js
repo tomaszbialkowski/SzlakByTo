@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import { Greeting } from "../components/Greeting";
 import { Search } from "../components/Search";
 import { ListHorizontal } from "../components/ListHorizontal";
 import { ListVertical } from "../components/ListVertical";
@@ -9,7 +9,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 export const Home = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header />
+      <Greeting greetingText="Jaki szlak dziś Cię trafi?" isButton={true} />
       <Search />
       <View style={styles.gap}></View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: "#fff",
     paddingBottom: 1,
+    paddingHorizontal: 16,
   },
   gap: {
     height: 8,

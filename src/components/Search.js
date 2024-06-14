@@ -3,7 +3,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 export const Search = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.searchSection}>
         <Ionicons
           style={styles.icon}
@@ -26,9 +26,6 @@ const styles = StyleSheet.create({
     padding: 16,
     color: "#999",
     fontSize: 16,
-  },
-  container: {
-    paddingHorizontal: 16,
   },
   searchSection: {
     flexDirection: "row",

@@ -1,16 +1,16 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export const IconAsButton = ({ iconName }) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Ionicons style={{}} name={iconName} size={20} color="#000" />
+    <TouchableOpacity style={styles.icon_container}>
+      <Ionicons name={iconName} style={styles.icon} />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  icon_container: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
@@ -20,5 +20,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     borderColor: "#e0e0e0",
+  },
+  icon: {
+    fontSize: 20,
+    color: "#080613",
   },
 });

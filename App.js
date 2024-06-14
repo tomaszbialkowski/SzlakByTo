@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as Font from "expo-font";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-import { Splash } from "./src/screens/Splash";
 import { HomeStack } from "./src/navigators/HomeStack";
+import { Profile } from "./src/screens";
 
 const loadFonts = async () => {
   await Font.loadAsync({
@@ -45,7 +45,7 @@ export default function App() {
 
               if (route.name === "Home") {
                 iconName = focused ? "compass" : "compass-outline";
-              } else if (route.name === "Splash") {
+              } else if (route.name === "Profile") {
                 iconName = focused ? "person" : "person-outline";
               }
 
@@ -67,8 +67,8 @@ export default function App() {
             }}
           />
           <BottomTab.Screen
-            name="Splash"
-            component={Splash}
+            name="Profile"
+            component={Profile}
             options={{
               headerShown: false,
             }}
