@@ -3,7 +3,7 @@ export const trails = [
     id: 1,
     name: "Główny Szlak Sudecki",
     description:
-      "Główny Szlak Sudecki (GSS) im. Mieczysława Orłowicza to jeden z najdłuższych szlaków pieszych w Polsce, przebiegający przez Sudety. Oto główne pasma górskie, przez które przebiega GSS:Góry Izerskie - zaczynając w Świeradowie-Zdroju.Karkonosze - najpopularniejsze i najwyższe pasmo Sudetów z najwyższym szczytem Śnieżką (1603 m n.p.m.).Rudawy Janowickie - malownicze pasmo o urozmaiconej rzeźbie terenu.Góry Kamienne - pasmo górskie o charakterystycznej, surowej rzeźbie.Góry Sowie - pasmo z najwyższym szczytem Wielką Sową (1015 m n.p.m.).Góry Stołowe - unikatowe pasmo górskie z charakterystycznymi formacjami skalnymi.Góry Bystrzyckie - zalesione pasmo o łagodnym charakterze.Masyw Śnieżnika - pasmo z najwyższym szczytem Śnieżnikiem (1425 m n.p.m.).Góry Bialskie - mało uczęszczane pasmo górskie o dzikim charakterze.Szlak kończy się w Prudniku w Górach Opawskich, które również są częścią Sudetów. GSS to trasa licząca około 440 km i oferująca wspaniałe widoki oraz zróżnicowane krajobrazy.Główny Szlak Sudecki (GSS) przebiega przez wiele znaczących szczytów w Sudetach. Oto najważniejsze z nich:Wysoka Kopa (1126 m n.p.m.) - najwyższy szczyt Gór Izerskich.Szrenica (1362 m n.p.m.) - ważny szczyt w Karkonoszach.Śnieżka (1603 m n.p.m.) - najwyższy szczyt Karkonoszy i całych Sudetów.Skalnik (945 m n.p.m.) - najwyższy szczyt Rudaw Janowickich.Waligóra (936 m n.p.m.) - najwyższy szczyt Gór Kamiennych.Wielka Sowa (1015 m n.p.m.) - najwyższy szczyt Gór Sowich.Szczeliniec Wielki (919 m n.p.m.) - najwyższy szczyt Gór Stołowych. Jagodna (977 m n.p.m.) - najwyższy szczyt Gór Bystrzyckich. Śnieżnik (1425 m n.p.m.) - najwyższy szczyt Masywu Śnieżnika.Rudawiec (1112 m n.p.m.) - jeden z wyższych szczytów Gór Bialskich.Biskupia Kopa (889 m n.p.m.) - najwyższy szczyt Gór Opawskich. Te szczyty są ważnymi punktami na trasie Głównego Szlaku Sudeckiego, oferując wspaniałe widoki i różnorodne krajobrazy.",
+      "Główny Szlak Sudecki (GSS) im. Mieczysława Orłowicza to jeden z najdłuższych szlaków pieszych w Polsce, przebiegający przez Sudety. GSS to trasa licząca około 440 km i oferująca wspaniałe widoki oraz zróżnicowane krajobrazy. Główny Szlak Sudecki (GSS) przebiega przez wiele znaczących szczytów w Sudetach oferując wspaniałe widoki i różnorodne krajobrazy.",
     distance: "440",
     endpoints: ["Świeradów Zdrój", "Prudnik"],
     range: [
@@ -262,7 +262,7 @@ export const trails = [
     name: "Szlak Trzech Pogórzy",
     description:
       "Szlak ten rozpoczyna się w Siedlisku k. Tuchowa i prowadzi przez malownicze tereny Pogórza Ciężkowickiego, Pogórza Strzyżowskiego i Pogórza Dynowskiego, kończąc się w Dynowie. Trasa jest znana z pięknych widoków, licznych zabytków oraz urokliwych wiosek. Szlak ten jest idealny dla miłośników długich wędrówek oraz osób ceniących spokój i kontakt z naturą.",
-    distance: "132.6",
+    distance: "133",
     endpoints: ["Siedliska k. Tuchowa", "Dynów"],
     range: [
       "Pogórze Ciężkowickie",

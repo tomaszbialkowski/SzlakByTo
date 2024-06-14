@@ -1,13 +1,13 @@
 import { View, StyleSheet, Text } from "react-native";
 import { trails } from "../data/data.js";
-import { TraillTail } from "./TraillTail.js";
+import { TrailTail } from "./TrailTail.js";
 
 export const ListVertical = () => {
   return (
     <View style={styles.componentContainer}>
       <Text style={styles.header}>Polecane dla Ciebie</Text>
       {trails.toReversed().map((item) => (
-        <TraillTail {...item} style="thumb" key={item.id} />
+        <TrailTail {...item} style="thumb" key={item.id} />
       ))}
     </View>
   );
@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   header: {
-    fontFamily: "Lexend",
-    fontVariationSettings: "'wght' 600",
+    fontFamily: "Lexend_500",
     fontSize: 24,
     color: "#080613",
   },

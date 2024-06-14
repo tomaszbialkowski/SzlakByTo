@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   text: {
-    fontFamily: "Lexend",
+    fontFamily: "Lexend_400",
     fontVariationSettings: "'wght' 300",
     fontSize: 14,
     color: "#7B7B7B",
   },
   bolder: {
-    fontFamily: "Lexend",
+    fontFamily: "Lexend_500",
     fontVariationSettings: "'wght' 600",
     fontSize: 18,
     color: "#080613",

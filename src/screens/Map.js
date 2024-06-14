@@ -1,5 +1,5 @@
-import { Text, StyleSheet } from "react-native";
+import { Text } from "react-native";
 
 export const Map = () => {
-  return <Text>MAP</Text>;
+  return <Text>Profile</Text>;
 };
