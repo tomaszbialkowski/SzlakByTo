@@ -14,16 +14,16 @@ export const Search = ({ setResults }) => {
   };
 
   const handleSubmit = () => {
-    const results = trails.filter((trail) =>
-      trail.keywords.some((keyword) =>
-        keyword.toLowerCase().includes(query.toLowerCase())
-      )
-    );
-    console.log(
-      "dane wysłane z search: ",
-      results.map((res) => res.name)
-    );
-    setResults(results);
+    if (query !== "") {
+      const results = trails.filter((trail) =>
+        trail.keywords.some((keyword) =>
+          keyword.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+      setResults(results);
+    } else {
+      setResults([]);
+    }
   };
 
   return (

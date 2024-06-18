@@ -1,10 +1,9 @@
 import { View, StyleSheet, Text, FlatList } from "react-native";
-import { trails } from "../data/data.js";
 import { TrailTail } from "./TrailTail.js";
 import { useTheme } from "../hooks/useTheme.js";
 import { spacing } from "../utils/designSystem.js";
 
-export const TrailsList = ({ isHorizontal, imageSize, headerText }) => {
+export const TrailsList = ({ isHorizontal, imageSize, headerText, data }) => {
   const { theme } = useTheme();
 
   return (
@@ -15,7 +14,7 @@ export const TrailsList = ({ isHorizontal, imageSize, headerText }) => {
         </Text>
       </View>
       <FlatList
-        data={trails}
+        data={data}
         renderItem={({ item }) => (
           <TrailTail {...item} imageSize={imageSize} key={item.id} />
         )}

@@ -8,20 +8,17 @@ import { spacing } from "../utils/designSystem";
 import { Greeting } from "../components/Greeting.js";
 import { Search } from "../components/Search.js";
 import { TrailsList } from "../components/TrailList";
+import { trails } from "../data/data.js";
 
 export const Home = () => {
   const [results, setResults] = useState([]);
+  const { theme } = useTheme();
 
   const handleSetResults = (data) => {
     setResults(data);
-    console.log(
-      "dane ustawione w home: ",
-      data.map((d) => d.name)
-    );
   };
 
-  // const data = trails;
-  const { theme } = useTheme();
+  const data = results.length > 0 ? results : trails;
 
   return (
     <SafeAreaView
@@ -34,12 +31,28 @@ export const Home = () => {
     >
       <Greeting greetingText="Jaki szlak dziś Cię trafi?" isButton={true} />
       <Search setResults={handleSetResults} />
-      <TrailsList isHorizontal={true} headerText="Popularne Szlaki" />
-      <TrailsList
-        isHorizontal={false}
-        imageSize={imageSize.SMALL}
-        headerText="Polecane dla Ciebie"
-      />
+      {results.length > 0 ? (
+        <TrailsList
+          isHorizontal={false}
+          imageSize={imageSize.SMALL}
+          headerText="Znalezione szlaki"
+          data={data}
+        />
+      ) : (
+        <>
+          <TrailsList
+            isHorizontal={true}
+            headerText="Popularne Szlaki"
+            data={data}
+          />
+          <TrailsList
+            isHorizontal={false}
+            imageSize={imageSize.SMALL}
+            headerText="Polecane dla Ciebie"
+            data={data.toReversed()}
+          />
+        </>
+      )}
     </SafeAreaView>
   );
 };
