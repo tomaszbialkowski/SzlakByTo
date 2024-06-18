@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { useTheme } from "../hooks/useTheme";
@@ -26,6 +26,11 @@ export const Search = ({ setResults }) => {
     }
   };
 
+  const handleDeleteQuery = () => {
+    setQuery("");
+    setResults([]);
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -47,6 +52,15 @@ export const Search = ({ setResults }) => {
           onChangeText={handleChange}
           onSubmitEditing={handleSubmit}
         />
+        {query && (
+          <TouchableOpacity onPress={handleDeleteQuery}>
+            <Ionicons
+              style={[styles.icon, { color: theme.text }]}
+              name="close-circle-outline"
+              size={20}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -61,13 +75,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderRadius: 8,
-    paddingHorizontal: 10,
+    paddingLeft: 8,
+    paddingRight: 4,
   },
   icon: {
-    padding: 8,
+    padding: 4,
   },
   input: {
-    padding: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 12,
     fontSize: 16,
+    flex: 1,
   },
 });
