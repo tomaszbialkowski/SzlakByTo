@@ -1,20 +1,51 @@
+import { useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export const Search = () => {
+import { useTheme } from "../hooks/useTheme";
+import { trails } from "../data/data";
+
+export const Search = ({ setResults }) => {
+  const { theme } = useTheme();
+  const [query, setQuery] = useState("");
+
+  const handleChange = (text) => {
+    setQuery(text);
+  };
+
+  const handleSubmit = () => {
+    const results = trails.filter((trail) =>
+      trail.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query.toLowerCase())
+      )
+    );
+    console.log(
+      "dane wysłane z search: ",
+      results.map((res) => res.name)
+    );
+    setResults(results);
+  };
+
   return (
-    <View>
-      <View style={styles.searchSection}>
+    <View style={styles.container}>
+      <View
+        style={[
+          styles.inputContainer,
+          { borderColor: theme.separator, backgroundColor: theme.background },
+        ]}
+      >
         <Ionicons
-          style={styles.icon}
+          style={[styles.icon, { color: theme.text }]}
           name="search-outline"
           size={20}
-          color="#000"
         />
         <TextInput
-          style={styles.input}
+          style={[styles.input, { color: theme.separator }]}
           placeholder="Wpisz nazwę szlaku, pasmo górskie, miejscowość etc..."
-          placeholderTextColor="#999"
+          placeholderTextColor={theme.separator}
+          value={query}
+          onChangeText={handleChange}
+          onSubmitEditing={handleSubmit}
         />
       </View>
     </View>
@@ -22,20 +53,21 @@ export const Search = () => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    padding: 16,
-    color: "#999",
-    fontSize: 16,
+  container: {
+    paddingBottom: 8,
   },
-  searchSection: {
+  inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#e0e0e0",
     borderRadius: 8,
     paddingHorizontal: 10,
   },
   icon: {
     padding: 8,
+  },
+  input: {
+    padding: 12,
+    fontSize: 16,
   },
 });

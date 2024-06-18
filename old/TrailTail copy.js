@@ -6,11 +6,11 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
-import { images } from "../data/images";
+import { images } from "../src/data/images";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { routes } from "../constants/routes";
-import { useTheme } from "../hooks/useTheme";
+import { routes } from "../src/constants/routes";
+import { useTheme } from "../src/hooks/useTheme";
 
 export const TrailTail = ({
   name,
@@ -22,42 +22,47 @@ export const TrailTail = ({
   id,
 }) => {
   const navigation = useNavigation();
-  const { theme } = useTheme();
-  const imageSource = images[imageName];
 
   function onPress(id) {
     navigation.navigate(routes.TRAIL, { id });
   }
+  console.log(`styles.image_${imageSize}`);
+  const { theme } = useTheme();
+  const imageSource = images[imageName];
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={[
         styles.tailContainer,
-        imageSize === "small" && styles.tailContainer_small,
+        imageSize == "small" && styles.tailContainer_small,
         { backgroundColor: theme.backgroundThumb },
       ]}
       onPress={() => onPress(id)}
     >
       <Image
         source={imageSource}
-        style={[styles.image, imageSize === "small" && styles.image_small]}
+        style={[styles.image, imageSize == "small" && styles.image_small]}
       />
       <View
         style={[
           styles.descriptionWrapper,
-          imageSize === "small" && styles.descriptionWrapper_small,
+          imageSize == "small" && styles.descriptionWrapper_small,
           { backgroundColor: theme.background },
         ]}
       >
-        <View style={styles.desc_header}>
-          <Text style={[styles.trailName, { color: theme.text }]}>{name}</Text>
-          <Text style={[styles.desc_markedText, { color: theme.primary }]}>
+        <View style={styles.descrition_headerWrapper}>
+          <Text style={[styles.description_header, { color: theme.text }]}>
+            {name}
+          </Text>
+          <Text
+            style={[styles.description_markedText, { color: theme.primary }]}
+          >
             {distance}
             <Text
               style={[
-                styles.desc_text,
-                imageSize === "small" && styles.desc_text_small,
+                styles.description_text,
+                imageSize == "small" && styles.description_text_small,
                 { color: theme.text },
               ]}
             >
@@ -73,8 +78,8 @@ export const TrailTail = ({
             />
             <Text
               style={[
-                styles.desc_text,
-                imageSize === "small" && styles.desc_text_small,
+                styles.description_text,
+                imageSize == "small" && styles.description_text_small,
                 { color: theme.text },
               ]}
             >
@@ -88,8 +93,8 @@ export const TrailTail = ({
             />
             <Text
               style={[
-                styles.desc_text,
-                imageSize === "small" && styles.desc_text_small,
+                styles.description_text,
+                imageSize == "small" && styles.description_text_small,
                 { color: theme.text },
               ]}
             >
@@ -104,37 +109,38 @@ export const TrailTail = ({
 
 const styles = StyleSheet.create({
   tailContainer: {
+    flexDirection: "row",
     paddingRight: 16,
-    position: "relative",
   },
   image: {
-    width: 240,
-    height: 240,
+    width: 280,
+    height: 280,
     borderRadius: 16,
+    position: "relative",
   },
   descriptionWrapper: {
     position: "absolute",
-    width: 224,
-    opacity: "0.9",
+    width: 264,
+    opacity: "0.85",
     borderRadius: 8,
     left: 8,
     bottom: 8,
+    paddingVertical: 12,
     paddingHorizontal: 12,
-    paddingVertical: 4,
   },
-  desc_header: {
+  descrition_headerWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingBottom: 12,
     gap: 4,
     opacity: 1,
   },
-  trailName: {
+  description_header: {
     fontFamily: "Lexend_500",
     fontSize: 16,
     flex: 1,
   },
-  desc_markedText: {
+  description_markedText: {
     fontFamily: "Lexend_600",
     fontSize: 16,
     flexShrink: 1,
@@ -145,8 +151,7 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingBottom: 4,
   },
-  desc_text: {
-    flexShrink: 1,
+  description_text: {
     fontFamily: "Lexend_400",
     fontSize: 14,
   },
@@ -154,14 +159,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   tailContainer_small: {
-    flexDirection: "row",
     alignItems: "flex-start",
+    paddingHorizontal: 8,
+    paddingVertical: 8,
     borderRadius: 16,
     ...Platform.select({
       ios: {
         shadowColor: "#999999",
         shadowOffset: { width: 0, height: 5 },
-        shadowOpacity: 0.15,
+        shadowOpacity: 0.1,
         shadowRadius: 8,
       },
       android: {
@@ -171,15 +177,14 @@ const styles = StyleSheet.create({
         boxShadow: "0 2px 3px rgba(0,0,0,0.3)",
       },
     }),
-    marginBottom: 10,
-    paddingVertical: 8,
-    paddingLeft: 8,
   },
-  image_small: { width: 80, height: 80 },
+  image_small: { width: 100, height: 100 },
   descriptionWrapper_small: {
-    flexGrow: 1,
+    flexShrink: 1,
     position: "static",
     top: 0,
+    paddingTop: 4,
+    paddingBottom: 0,
   },
-  desc_text_small: { flexShrink: 1 },
+  description_text_small: { flexShrink: 1 },
 });

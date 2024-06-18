@@ -9,7 +9,7 @@ export const HomeStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={routes.HOME}
+        name="Start"
         component={Home}
         options={{
           headerShown: false,

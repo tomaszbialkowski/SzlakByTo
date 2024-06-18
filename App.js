@@ -1,80 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as Font from "expo-font";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { ThemeProvider, ThemeContext } from "./src/context/ThemeContext";
+import { TabNavigator } from "./src/navigators/TabNavigator";
+import { StatusBar } from "react-native";
+import { useLoadFonts } from "./src/hooks/useLoadFonts";
 
-import { HomeStack } from "./src/navigators/HomeStack";
-import { Profile } from "./src/screens";
+const MainApp = () => {
+  const { theme } = React.useContext(ThemeContext);
 
-const loadFonts = async () => {
-  await Font.loadAsync({
-    Lexend_100: require("./assets/fonts/Lexend-100.ttf"),
-    Lexend_200: require("./assets/fonts/Lexend-200.ttf"),
-    Lexend_300: require("./assets/fonts/Lexend-300.ttf"),
-    Lexend_400: require("./assets/fonts/Lexend-400.ttf"),
-    Lexend_500: require("./assets/fonts/Lexend-500.ttf"),
-    Lexend_600: require("./assets/fonts/Lexend-600.ttf"),
-    Lexend_700: require("./assets/fonts/Lexend-700.ttf"),
-    Lexend_800: require("./assets/fonts/Lexend-800.ttf"),
-    Lexend_900: require("./assets/fonts/Lexend-900.ttf"),
-  });
+  return (
+    <>
+      <StatusBar barStyle={theme.barStyle} backgroundColor={theme.background} />
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <TabNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </>
+  );
 };
 
-const BottomTab = createBottomTabNavigator();
-
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  useEffect(() => {
-    loadFonts().then(() => setFontsLoaded(true));
-  }, []);
+  const fontsLoaded = useLoadFonts();
 
   if (!fontsLoaded) {
     return null;
   }
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <BottomTab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-
-              if (route.name === "Home") {
-                iconName = focused ? "compass" : "compass-outline";
-              } else if (route.name === "Profile") {
-                iconName = focused ? "person" : "person-outline";
-              }
-
-              return <Ionicons name={iconName} size={size} color={color} />;
-            },
-            tabBarActiveTintColor: "#00b877",
-            tabBarInactiveTintColor: "gray",
-            tabBarStyle: {
-              paddingTop: 8,
-              height: 80,
-            },
-          })}
-        >
-          <BottomTab.Screen
-            name="Home"
-            component={HomeStack}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <BottomTab.Screen
-            name="Profile"
-            component={Profile}
-            options={{
-              headerShown: false,
-            }}
-          />
-        </BottomTab.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <ThemeProvider>
+      <MainApp />
+    </ThemeProvider>
   );
 }

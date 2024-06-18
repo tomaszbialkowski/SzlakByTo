@@ -2,39 +2,55 @@ import { StyleSheet, Text, View, Switch, Appearance } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Greeting } from "../components/Greeting";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useState } from "react";
+import { useTheme } from "../hooks/useTheme";
 
 export const Profile = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((state) => !state);
+  const { theme, toggleTheme, isDark } = useTheme();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <Text style={styles.title}>My Profile</Text>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: theme.background }]}
+    >
+      <Text style={[styles.title, { color: theme.text }]}>My Profile</Text>
       <Greeting size={64} />
-      <View style={styles.separatorHoriontal}></View>
+      <View
+        style={[
+          styles.separatorHoriontal,
+          { backgroundColor: theme.separator },
+        ]}
+      ></View>
       <View style={styles.switchContainer}>
         <View style={styles.settingItem}>
-          <View style={styles.iconContainer}>
+          <View
+            style={[
+              styles.iconContainer,
+              { backgroundColor: theme.iconWhiteBackground },
+            ]}
+          >
             <Ionicons style={styles.icon} name="contrast-outline" />
           </View>
-          <Text style={styles.text}>Dark Mode</Text>
+          <Text style={[styles.text, { color: theme.text }]}>Dark Mode</Text>
         </View>
         <Switch
-          trackColor={{ false: "#F1F1F3", true: "#00b877" }}
-          ios_backgroundColor="#F1F1F3"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          trackColor={{ false: theme.light_300, true: theme.primary_500 }}
+          ios_backgroundColor={theme.light_300}
+          onValueChange={toggleTheme}
+          value={isDark}
         />
       </View>
       <View style={styles.settingItem}>
-        <View style={[styles.iconContainer, styles.iconContainer_red]}>
+        <View
+          style={[
+            styles.iconContainer,
+            { backgroundColor: theme.iconRedBackground },
+          ]}
+        >
           <Ionicons
             style={[styles.icon, styles.icon_red]}
             name="log-out-outline"
           />
         </View>
-        <Text style={styles.text}>Logout</Text>
+        <Text style={[styles.text, styles.icon_red]}>Logout</Text>
       </View>
     </SafeAreaView>
   );
@@ -43,7 +59,6 @@ export const Profile = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
     paddingHorizontal: 16,
   },
   text: {
@@ -57,10 +72,8 @@ const styles = StyleSheet.create({
   },
   separatorHoriontal: {
     width: "100%",
-    height: 1,
-    borderStyle: "solid",
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "#F1F1F3",
+    height: StyleSheet.hairlineWidth,
+    opacity: 0.5,
     marginBottom: 16,
     marginHorizontal: "auto",
   },
@@ -70,6 +83,7 @@ const styles = StyleSheet.create({
   },
   settingItem: {
     flexDirection: "row",
+
     alignItems: "center",
     gap: 8,
     paddingBottom: 16,
@@ -77,13 +91,11 @@ const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F1F1F3",
     height: 48,
     width: 48,
     padding: 4,
     borderRadius: 50,
   },
-  iconContainer_red: { backgroundColor: "#FEF2F2" },
   icon: {
     fontSize: 20,
     color: "#080613",

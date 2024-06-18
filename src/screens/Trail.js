@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   useWindowDimensions,
-  SafeAreaView,
   Platform,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -15,6 +14,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import { trails } from "../data/data.js";
 import { images } from "../data/images";
+import { useTheme } from "../hooks/useTheme.js";
 
 export const Trail = ({ navigation, route }) => {
   const { params } = route;
@@ -30,49 +30,67 @@ export const Trail = ({ navigation, route }) => {
     color,
     duration,
   } = trails.find((trail) => trail.id === params.id);
+  const { theme } = useTheme();
 
   const { width } = useWindowDimensions();
-  console.log(width);
   const imageSource = images[imageName];
 
   return (
-    <ScrollView style={styles.scrollArea}>
+    <ScrollView
+      style={[styles.scrollArea, { backgroundColor: theme.background }]}
+    >
       <Image source={imageSource} style={[styles.image, { width: width }]} />
-      <View style={styles.textContainer}>
-        <Text style={styles.header}>{name}</Text>
-        <Text style={styles.text}>
-          <Ionicons name="trail-sign-outline" style={styles.description_icon} />
+      <View
+        style={[styles.textContainer, { backgroundColor: theme.background }]}
+      >
+        <Text style={[styles.header, { color: theme.text }]}>{name}</Text>
+        <Text style={[styles.text, { color: theme.text }]}>
+          <Ionicons
+            name="trail-sign-outline"
+            style={[styles.description_icon, { color: theme.primary }]}
+          />
           {endpoints[0]} - {endpoints[1]}
           {distance} km
-          <Ionicons name="footsteps-outline" style={styles.description_icon} />
+          <Ionicons
+            name="footsteps-outline"
+            style={[styles.description_icon, { color: theme.primary }]}
+          />
           {duration} Dni Wędrówki
         </Text>
-        <Text style={[styles.text, styles.padding]}>{description}</Text>
+        <Text style={[styles.text, { color: theme.text }, styles.padding]}>
+          {description}
+        </Text>
         <View style={styles.padding_sm}>
-          <Text style={styles.text}>
-            <Foundation name="mountains" style={styles.description_icon} />
+          <Text style={[styles.text, { color: theme.text }]}>
+            <Foundation
+              name="mountains"
+              style={[styles.description_icon, { color: theme.primary }]}
+            />
             Pasma górskie:
           </Text>
-          <Text style={styles.text}>{range}</Text>
+          <Text style={[styles.text, { color: theme.text }]}>{range}</Text>
         </View>
         <View style={styles.padding_sm}>
-          <Text style={styles.text}>
-            <Foundation name="mountains" style={styles.description_icon} />
+          <Text style={[styles.text, { color: theme.text }]}>
+            <Foundation
+              name="mountains"
+              style={[styles.description_icon, { color: theme.primary }]}
+            />
             Najważniejsze szczyty:
           </Text>
-          <Text style={styles.text}>{peaks}</Text>
+          <Text style={[styles.text, { color: theme.text }]}>{peaks}</Text>
         </View>
         <View style={styles.padding_sm}>
-          <Text style={styles.text}>
+          <Text style={[styles.text, { color: theme.text }]}>
             <MaterialCommunityIcons
               name="home-city-outline"
-              style={styles.description_icon}
+              style={[styles.description_icon, { color: theme.primary }]}
             />
             Miasta na szlaku:
           </Text>
-          <Text style={styles.text}> {towns}</Text>
+          <Text style={[styles.text, { color: theme.text }]}> {towns}</Text>
         </View>
-        <Text style={styles.text}>
+        <Text style={[styles.text, { color: theme.text }]}>
           Kolor szlaku:
           <MaterialCommunityIcons
             size={18}
@@ -86,9 +104,7 @@ export const Trail = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  scrollArea: {
-    // flexGrow: 1,
-  },
+  scrollArea: {},
   header: {
     padding: 16,
     fontFamily: "Lexend_500",
@@ -103,7 +119,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "auto",
     paddingBottom: 64,
-    backgroundColor: "#fff",
     marginTop: -24,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
@@ -124,7 +139,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Lexend_300",
-    color: "#080613",
     fontSize: 16,
     paddingHorizontal: 16,
     textAlign: "auto",
@@ -137,6 +151,5 @@ const styles = StyleSheet.create({
   },
   description_icon: {
     fontSize: 18,
-    color: "#00b877",
   },
 });
