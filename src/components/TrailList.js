@@ -3,21 +3,10 @@ import { trails } from "../data/data.js";
 import { TrailTail } from "./TrailTail.js";
 import { useTheme } from "../hooks/useTheme.js";
 import { spacing } from "../utils/designSystem.js";
-import { useState } from "react";
 
 export const TrailsList = ({ isHorizontal, imageSize, headerText }) => {
   const { theme } = useTheme();
 
-  const [results, setResults] = useState([]);
-
-  const handleSetResults = (data) => {
-    setResults(data);
-    console.log(
-      "dane ustawione w home: ",
-      data.map((d) => d.name)
-    );
-  };
-  const data = results && results.length > 0 ? results : trails;
   return (
     <>
       <View>
@@ -26,7 +15,7 @@ export const TrailsList = ({ isHorizontal, imageSize, headerText }) => {
         </Text>
       </View>
       <FlatList
-        data={data}
+        data={trails}
         renderItem={({ item }) => (
           <TrailTail {...item} imageSize={imageSize} key={item.id} />
         )}

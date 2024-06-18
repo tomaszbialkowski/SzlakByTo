@@ -1,28 +1,26 @@
-import { TrailsList } from "../components/TrailList";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import { useTheme } from "../hooks/useTheme";
-import { spacing } from "../utils/designSystem";
 import { imageSize } from "../constants/imageSize.js";
+import { spacing } from "../utils/designSystem";
 import { Greeting } from "../components/Greeting.js";
 import { Search } from "../components/Search.js";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { StyleSheet, View } from "react-native";
-import { trails } from "../data/data.js";
-import { TrailTail } from "../components/TrailTail.js";
+import { TrailsList } from "../components/TrailList";
 
 export const Home = () => {
-  // const [results, setResults] = useState([]);
+  const [results, setResults] = useState([]);
 
-  // const handleSetResults = (data) => {
-  //   setResults(data);
-  //   console.log(
-  //     "dane ustawione w home: ",
-  //     data.map((d) => d.name)
-  //   );
-  // };
-  const data = trails;
+  const handleSetResults = (data) => {
+    setResults(data);
+    console.log(
+      "dane ustawione w home: ",
+      data.map((d) => d.name)
+    );
+  };
+
+  // const data = trails;
   const { theme } = useTheme();
 
   return (
@@ -35,8 +33,7 @@ export const Home = () => {
       ]}
     >
       <Greeting greetingText="Jaki szlak dziś Cię trafi?" isButton={true} />
-      {/* <Search setResults={handleSetResults} /> */}
-      <Search />
+      <Search setResults={handleSetResults} />
       <TrailsList isHorizontal={true} headerText="Popularne Szlaki" />
       <TrailsList
         isHorizontal={false}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -38,6 +38,7 @@ export const Trail = ({ navigation, route }) => {
   return (
     <ScrollView
       style={[styles.scrollArea, { backgroundColor: theme.background }]}
+      contentContainerStyle={{ alignItems: "center" }}
     >
       <Image source={imageSource} style={[styles.image, { width: width }]} />
       <View
@@ -104,7 +105,6 @@ export const Trail = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-  scrollArea: {},
   header: {
     padding: 16,
     fontFamily: "Lexend_500",
@@ -118,24 +118,10 @@ const styles = StyleSheet.create({
   textContainer: {
     width: "100%",
     height: "auto",
-    paddingBottom: 64,
+    paddingBottom: 16,
     marginTop: -24,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: -5 },
-        shadowOpacity: 0.5,
-        shadowRadius: 24,
-      },
-      android: {
-        elevation: 5,
-      },
-      web: {
-        boxShadow: "0 -2px 3px rgba(0,0,0,0.3)",
-      },
-    }),
   },
   text: {
     fontFamily: "Lexend_300",

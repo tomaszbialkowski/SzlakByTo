@@ -8,7 +8,7 @@ W widoku szczegółowym szlaku prezentowane są najważniejsze informacje o szla
 - pasma górskie i szczyty przez które prowadzi szlak,
 - ważniejsze miejscowośći na trasie szlaku
 - kolor szlaku
-- filmy na YT z przejśćia szlaku.
+- filmy na YT z przejściami szlaku.
 
 Aplikacja umożliwa także przełączanie między light/dark mode.
 
