@@ -2,6 +2,12 @@
 
 ## Aby uruchomić
 
+w folderze projektu wykonaj polecenie
+npm install
+
+w folderze projektu wykonaj polecenie:
+npm start
+
 ## O aplikacji
 
 Aplikacja gromadząca informacje na temat pieszych szlaków długodystansowych w Polsce.
