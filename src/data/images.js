@@ -7,5 +7,7 @@ export const images = {
   "image_06.jpg": require("../../assets/img/image_06.jpg"),
   "image_07.jpg": require("../../assets/img/image_07.jpg"),
   "image_08.jpg": require("../../assets/img/image_08.jpg"),
+  "image_09.jpg": require("../../assets/img/image_09.jpg"),
+  "image_10.jpg": require("../../assets/img/image_10.jpg"),
   // "image_09.jpg": require("../../assets/img/image_09.jpg"),
 };

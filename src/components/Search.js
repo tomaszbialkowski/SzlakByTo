@@ -1,5 +1,12 @@
-import { useState } from "react";
-import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { useState, useRef, useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Animated,
+  Easing,
+} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { useTheme } from "../hooks/useTheme";
@@ -8,6 +15,27 @@ import { trails } from "../data/data";
 export const Search = ({ setResults }) => {
   const { theme } = useTheme();
   const [query, setQuery] = useState("");
+  const AnimatedTouchableOpacity =
+    Animated.createAnimatedComponent(TouchableOpacity);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (query) {
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }).start();
+    } else {
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+        easing: Easing.ease,
+      }).start();
+    }
+  }, [query]);
 
   const handleChange = (text) => {
     setQuery(text);
@@ -53,13 +81,16 @@ export const Search = ({ setResults }) => {
           onSubmitEditing={handleSubmit}
         />
         {query && (
-          <TouchableOpacity onPress={handleDeleteQuery}>
+          <AnimatedTouchableOpacity
+            onPress={handleDeleteQuery}
+            style={{ opacity: fadeAnim }}
+          >
             <Ionicons
               style={[styles.icon, { color: theme.text }]}
               name="close-circle-outline"
               size={20}
             />
-          </TouchableOpacity>
+          </AnimatedTouchableOpacity>
         )}
       </View>
     </View>
@@ -68,6 +99,7 @@ export const Search = ({ setResults }) => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingVertical: 16,
     paddingBottom: 8,
   },
   inputContainer: {

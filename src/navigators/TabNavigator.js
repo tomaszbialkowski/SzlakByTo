@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { HomeStack } from "./HomeStack";
-import { Profile } from "../screens";
+import { Map, Profile } from "../screens";
 import { useTheme } from "../hooks/useTheme";
 
 const BottomTab = createBottomTabNavigator();
@@ -19,8 +19,9 @@ export const TabNavigator = () => {
             iconName = focused ? "compass" : "compass-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person" : "person-outline";
+          } else if (route.name === "Mapa") {
+            iconName = focused ? "map" : "map-outline";
           }
-
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: theme.tabBarActiveTintColor,
@@ -35,6 +36,13 @@ export const TabNavigator = () => {
       <BottomTab.Screen
         name="Home"
         component={HomeStack}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <BottomTab.Screen
+        name="Mapa"
+        component={Map}
         options={{
           headerShown: false,
         }}
